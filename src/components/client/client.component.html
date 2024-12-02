@@ -1,0 +1,125 @@
+<p>{{clientObj | json}}</p>
+<ul>
+    @for(item of userList$ | async; track $index){
+        <li>{{item.username}}</li>
+    }
+</ul>
+<app-alert [alertType]="'success'" [message]="'mesasge from a client'"></app-alert>
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List -  {{currentDate | date: 'dd-MMM-yyyy'}}
+            </div>    
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th> Sr No</th>
+                            <th> Company Name</th>
+                            <th> Person Name</th>
+                            <th> Contact No</th>
+                            <th> City</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of clientList; track $index){
+                            <tr>
+                                <td>{{ $index + 1}}</td>
+                                <td> {{ item.companyName | uppercase}}</td>
+                                <td> {{ item.contactPersonName}}</td>
+                                <td>{{ item.contactNo}}</td>
+                                <td>{{item.city}}</td>
+                                <td> <button class="btn btn-success" (click)="onEdit(item)">Edit</button>
+                                <button class="btn btn-warning" (click)="onDelete(item.clientId)">Delete</button></td>
+                            </tr>
+                        }
+                       
+                    </tbody>
+                </table>
+            </div>        
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                New Client List
+                
+            </div>
+            <div class="card-body">
+                <form #form="ngForm">
+                    <div class="row">
+                        <div class="col6">
+                            <label for="">Person Name</label>
+                            <input type="text" #personName="ngModel" required name="contactPersonName" minlength="5" [(ngModel)]="clientObj.contactPersonName" class="form-control">
+                            @if(personName.touched){
+                                <div class="text-danger">
+                                    @if(personName?.errors?.['required']){
+                                        <span>{{reqError}}</span>
+                                    }
+                                    @if(personName?.errors?.['minlength']){
+                                        <span>Minlength is less than 5</span>
+                                    }
+                                   
+                                </div>
+                            }
+                            
+                        </div>
+                        <div class="col6">
+                            <label for="">Contact Number</label>
+                            <input type="text" [(ngModel)]="clientObj.contactNo"  name="contactPersonName" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">Company Name</label>
+                            <input type="text" [(ngModel)]="clientObj.companyName" name="companyName" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">City</label>
+                            <input type="text" [(ngModel)]="clientObj.city" name="city" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">State</label>
+                            <input type="text" [(ngModel)]="clientObj.state" name="state" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">address</label>
+                            <textarea name="" [(ngModel)]="clientObj.address" name="address" class="form-control" id=""></textarea>
+                        </div>
+                        <div class="col6">
+                            <label for="">Pincode</label>
+                            <input type="text" [(ngModel)]="clientObj.pincode" name="pincode" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">Employee Strength</label>
+                            <input type="text" [(ngModel)]="clientObj.employeeStrength" name="employeeStrength" class="form-control">
+                        </div>
+                        <div class="col6">
+                            <label for="">GST No</label>
+                            <input type="text" [(ngModel)]="clientObj.gstNo" name="gstNo" class="form-control">
+                        </div>
+                       
+                        <div class="col6">
+                            <label for="">Reg No</label>
+                            <input type="text" [(ngModel)]="clientObj.regNo" name="regNo" class="form-control">
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <button class="btn btn-secondary text-center">Reset</button>
+                        </div>
+                        <div class="col-6">
+
+                            <app-my-button [buttonClass]="'btn btn-success text-center'"  [isDisabled]="!form.valid"  (onBtnClicked)="onSaveClient($event)"    [buttonText]="clientObj.clientId !== 0 ? 'Update Client' : 'Save Client' "></app-my-button>
+                            <!-- <button class="btn btn-success text-center" [disabled]="!form.valid" (click)="onSaveClient()">
+                                {{clientObj.clientId !== 0 ? 'Update Client' : 'Save Client' }} </button> -->
+                        </div>
+                    </div>
+                </form>
+               
+            </div>  
+        </div>
+    </div>
+</div>

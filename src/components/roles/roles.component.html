@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-12">
+
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th> Sr No</th>
+                    <th> Role Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let role of roleList;let srNo = index">
+                    <td>{{srNo + 1}}</td>
+                    <td>{{role.role}}</td>
+                </tr>
+            </tbody>
+        </table>
+      
+    </div>
+
+  
+</div>
+
+
+<!-- <p>roles works!</p>
+
+<div class="row">
+    <div class="col-3"><p>{{firstName}}</p></div>
+    <div class="col-3"><p>{{version}}</p></div>
+    <div class="col-3"><p>{{currentDate}}</p></div>
+    <div class="col-3"><p>{{selectedState}}</p></div>
+</div>
+
+
+<div class="row">
+    <div class="col-3">
+        <input type="text" [value]="firstName" class="form-control">
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="firstName" />
+    </div>
+    <div class="col-3">
+        <button [type]="inputType" (click)="showWelcomeAlert()">Show</button>
+    </div>
+    <div class="col-3">
+        <select [(ngModel)]="selectedState">
+            <option value="MH">MH</option>
+            <option value="MP">MP</option>
+            <option value="Goa">GOa</option>
+        </select>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showWelcomeAlert()">Show Alert</button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showMessage('React Msg')">Show react </button>
+    </div>
+    <div class="col-3">
+        <button class="btn btn-success" (click)="showMessage('Dot net msg')">Show Dotnet </button>
+    </div>
+</div> -->
